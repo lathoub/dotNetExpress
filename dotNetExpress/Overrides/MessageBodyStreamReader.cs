@@ -11,7 +11,7 @@ public class MessageBodyStreamReader(Stream inner, long bufferSize = 256 * 1024)
 {
     private long _length;
 
-    public string FileName;
+    public string? FileName;
 
     public override bool CanRead => inner.CanRead;
 

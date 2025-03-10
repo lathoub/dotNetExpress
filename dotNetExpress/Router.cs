@@ -9,7 +9,7 @@ public class Router
 {
     public string MountPath = string.Empty;
 
-    private Router _parent;
+    private Router? _parent;
 
     private readonly List<ErrorCallback> _errorHandler = [];
 
@@ -19,7 +19,7 @@ public class Router
 
     private readonly Dictionary<string, Router> _routers = [];
 
-    private MiddlewareCallback _catchAll;
+    private MiddlewareCallback? _catchAll;
 
     private readonly RouterOptions _options;
 
@@ -29,7 +29,7 @@ public class Router
     /// Constructor
     /// </summary>
     /// <param name="options"></param>
-    public Router(RouterOptions options = null)
+    public Router(RouterOptions? options = null)
     {
         options ??= new RouterOptions();
         _options = options;

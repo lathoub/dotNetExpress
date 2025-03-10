@@ -3,7 +3,7 @@ using System.Net.Sockets;
 using System.Text;
 
 namespace dotNetExpress.Tools;
-public partial class SseSocket
+public class SseSocket
 {
     private const int MessageBufferSize = 1024;
     private readonly SseServer _server;
@@ -55,7 +55,7 @@ public partial class SseSocket
                 throw new Exception("SSE asyncState error is not socket");
             }
 
-            int bufferSize = clientSocket.EndReceive(asyncResult, out var errorCode);
+            var bufferSize = clientSocket.EndReceive(asyncResult, out var errorCode);
 
             if (errorCode == SocketError.Success)
             {

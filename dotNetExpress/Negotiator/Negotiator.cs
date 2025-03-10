@@ -15,7 +15,7 @@ internal class Negotiator
     /// <returns></returns>
     internal string MediaType(string available = null)
     {
-        var mediaTypes = MediaTypes(new string[] { available });
+        var mediaTypes = MediaTypes([available]);
         return mediaTypes.ElementAt(0);
     }
 

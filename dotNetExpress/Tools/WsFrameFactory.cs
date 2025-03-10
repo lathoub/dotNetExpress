@@ -65,18 +65,10 @@ public static class WsFrameFactory
         return response;
     }
 
-    public struct SFrameMaskData
+    public struct SFrameMaskData(int dataLength, int keyIndex, int totalLenght, EOpcodeType opcode)
     {
-        public int DataLength, KeyIndex, TotalLenght;
-        public EOpcodeType Opcode;
-
-        public SFrameMaskData(int DataLength, int KeyIndex, int TotalLenght, EOpcodeType Opcode)
-        {
-            this.DataLength = DataLength;
-            this.KeyIndex = KeyIndex;
-            this.TotalLenght = TotalLenght;
-            this.Opcode = Opcode;
-        }
+        public int DataLength = dataLength, KeyIndex = keyIndex, TotalLenght = totalLenght;
+        public EOpcodeType Opcode = opcode;
     }
 
     /// <summary>
@@ -109,12 +101,12 @@ public static class WsFrameFactory
     public static SFrameMaskData GetFrameData(byte[] Data)
     {
         // Get the opcode of the frame
-        int opcode = Data[0] - 128;
+        var opcode = Data[0] - 128;
 
         // If the length of the message is in the 2 first indexes
         if (Data[1] - 128 <= 125)
         {
-            int dataLength = (Data[1] - 128);
+            var dataLength = (Data[1] - 128);
             return new SFrameMaskData(dataLength, 2, dataLength + 6, (EOpcodeType)opcode);
         }
 
@@ -122,7 +114,7 @@ public static class WsFrameFactory
         if (Data[1] - 128 == 126)
         {
             // Combine the bytes to get the length
-            int dataLength = BitConverter.ToInt16(new byte[] { Data[3], Data[2] }, 0);
+            int dataLength = BitConverter.ToInt16([Data[3], Data[2]], 0);
             return new SFrameMaskData(dataLength, 4, dataLength + 8, (EOpcodeType)opcode);
         }
 
@@ -130,12 +122,12 @@ public static class WsFrameFactory
         if (Data[1] - 128 == 127)
         {
             // Get the following 8 bytes to combine to get the data 
-            byte[] combine = new byte[8];
-            for (int i = 0; i < 8; i++) combine[i] = Data[i + 2];
+            var combine = new byte[8];
+            for (var i = 0; i < 8; i++) combine[i] = Data[i + 2];
 
             // Combine the bytes to get the length
             //int dataLength = (int)BitConverter.ToInt64(new byte[] { Data[9], Data[8], Data[7], Data[6], Data[5], Data[4], Data[3], Data[2] }, 0);
-            int dataLength = (int)BitConverter.ToInt64(combine, 0);
+            var dataLength = (int)BitConverter.ToInt64(combine, 0);
             return new SFrameMaskData(dataLength, 10, dataLength + 14, (EOpcodeType)opcode);
         }
 
@@ -149,17 +141,17 @@ public static class WsFrameFactory
     public static string GetDataFromFrame(byte[] Data)
     {
         // Get the frame data
-        SFrameMaskData frameData = GetFrameData(Data);
+        var frameData = GetFrameData(Data);
 
         // Get the decode frame key from the frame data
-        byte[] decodeKey = new byte[4];
-        for (int i = 0; i < 4; i++) decodeKey[i] = Data[frameData.KeyIndex + i];
+        var decodeKey = new byte[4];
+        for (var i = 0; i < 4; i++) decodeKey[i] = Data[frameData.KeyIndex + i];
 
-        int dataIndex = frameData.KeyIndex + 4;
-        int count = 0;
+        var dataIndex = frameData.KeyIndex + 4;
+        var count = 0;
 
         // Decode the data using the key
-        for (int i = dataIndex; i < frameData.TotalLenght; i++)
+        for (var i = dataIndex; i < frameData.TotalLenght; i++)
         {
             Data[i] = (byte)(Data[i] ^ decodeKey[count % 4]);
             count++;

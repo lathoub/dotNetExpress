@@ -5,7 +5,7 @@ public class WsServer
 {
     private readonly Dictionary<int, WebSocket> _webSockets = [];
 
-    private CancellationTokenSource _cancellationTokenSource = new();
+    private readonly CancellationTokenSource _cancellationTokenSource = new();
 
     private Task _idleTask;
 
@@ -72,23 +72,19 @@ public class WsServer
 
                 var frameMessage = WsFrameFactory.FromString(IdleMessage);
 
-                foreach (var kvp in _webSockets)
+                foreach (var wsSocket in _webSockets.Select(kvp => kvp.Value).Where(wsSocket => DateTime.Now.Subtract(wsSocket.LastAction).TotalSeconds > IdleTimeout))
                 {
-                    var wsSocket = kvp.Value;
-                    if (DateTime.Now.Subtract(wsSocket.LastAction).TotalSeconds > IdleTimeout)
+                    try
                     {
-                        try
-                        {
-                            wsSocket.GetSocket().Send(frameMessage);
+                        wsSocket.GetSocket().Send(frameMessage);
 
-                            // TODO: send idle message
-                            wsSocket.LastAction = DateTime.Now;
-                        }
-                        catch (Exception e)
-                        {
-                            Debug.WriteLine($"Socket exception {e.Message}");
-                            toRemove.Add(wsSocket);
-                        }
+                        // TODO: send idle message
+                        wsSocket.LastAction = DateTime.Now;
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.WriteLine($"Socket exception {e.Message}");
+                        toRemove.Add(wsSocket);
                     }
                 }
 
@@ -122,7 +118,7 @@ public class WsServer
     /// <summary>
     /// Socket in argument has already been closed
     /// </summary>
-    /// <param name="client"></param>
+    /// <param name="value"></param>
     public void Remove(WebSocket value)
     {
         lock (_webSockets)
@@ -150,10 +146,8 @@ public class WsServer
 
             var toRemove = new List<WebSocket>();
 
-            foreach (var kvp in _webSockets)
+            foreach (var client in _webSockets.Select(kvp => kvp.Value))
             {
-                var client = kvp.Value;
-
                 try
                 {
                     client.GetSocket().Send(frameMessage);

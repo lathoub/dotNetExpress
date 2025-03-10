@@ -71,10 +71,10 @@ internal class MediaType
 
     private static int CompareSpecs(SpecificMediaType a, SpecificMediaType b)
     {
-        return Equals(a.q, default(float)) ? (int)(b.q - a.q) :
-               Equals(a.s, default(int)) ? (b.s - a.s) :
-               Equals(a.o, default(int)) ? (a.o - b.o) :
-               Equals(a.i, default(int)) ? (a.i - b.i) : 
+        return Equals(a.q, 0) ? (int)(b.q - a.q) :
+               Equals(a.s, 0) ? (b.s - a.s) :
+               Equals(a.o, 0) ? (a.o - b.o) :
+               Equals(a.i, 0) ? (a.i - b.i) : 
                0;
     }
 
@@ -101,14 +101,14 @@ internal class MediaType
 
             //}
 
-            if (getNonZero([priority.s - spec.s, priority.q - spec.q, priority.o - spec.o]) < 0)
+            if (GetNonZero([priority.s - spec.s, priority.q - spec.q, priority.o - spec.o]) < 0)
                 priority = (SpecificMediaType)spec;
         }
 
         return priority;
     }
 
-    private static float getNonZero(IEnumerable<float> array)
+    private static float GetNonZero(IEnumerable<float> array)
     {
         return array.FirstOrDefault(i => i != 0);
     }
@@ -124,8 +124,6 @@ internal class MediaType
     {
         var p = ParseMediaType(type);
         var s = 0;
-
-        if (null == p) return null;
 
         if (string.Equals(spec.type, p.type, StringComparison.CurrentCultureIgnoreCase))
             s |= 4;

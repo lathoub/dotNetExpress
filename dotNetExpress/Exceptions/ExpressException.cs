@@ -15,9 +15,4 @@ public class ExpressException(HttpStatusCode status, string title, string detail
     public ExpressException(HttpStatusCode status, string detail) : this(status, "", detail)
     {
     }
-
-    public dynamic toJson()
-    {
-        return new { status = Status, title = Title, detail = Detail };
-    }
 }

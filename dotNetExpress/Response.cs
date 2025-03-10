@@ -156,7 +156,7 @@ public class Response : ServerResponse
     /// </summary>
     /// <param name="field"></param>
     /// <returns></returns>
-    public string Get(string field)
+    public string? Get(string field)
     {
         return _headers[field];
     }

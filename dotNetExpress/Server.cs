@@ -11,7 +11,7 @@ public class Server : TcpListener
 {
     private Thread? _tcpListenerThread;
 
-    private CancellationTokenSource _cancellation = new();
+    private readonly CancellationTokenSource _cancellation = new();
 
     #region Constructor
 
@@ -75,9 +75,9 @@ public class Server : TcpListener
             Debug.WriteLine($"[{Environment.CurrentManagedThreadId}] ({DateTime.Now:HH.mm.ss:ffff}) Listener started");
 
             List<Task> tcpClientTasks = [];
-            int awaiterTimeoutInMS = 500;
+            var awaiterTimeoutInMS = 500;
 
-            _cancellation.Token.Register(() => this.Stop());
+            _cancellation.Token.Register(this.Stop);
 
             try
             {

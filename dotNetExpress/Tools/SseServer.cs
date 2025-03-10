@@ -31,7 +31,7 @@ public class SseServer
 {
     private static readonly Dictionary<int, SseSocket> _sseSockets = [];
 
-    private CancellationTokenSource _cancellationTokenSource = new();
+    private readonly CancellationTokenSource _cancellationTokenSource = new();
 
     private Task _idleTask;
 
@@ -94,31 +94,29 @@ public class SseServer
             {
                 var toRemove = new List<SseSocket>();
 
-                var idleMessage = ":\n\n";
+                const string idleMessage = ":\n\n";
 
                 var frameMessage = Encoding.UTF8.GetBytes(idleMessage);
 
-                foreach (var kvp in _sseSockets)
+                foreach (var sseSocket in _sseSockets.Select(kvp => kvp.Value))
                 {
-                    var sseSocket = kvp.Value;
-
                     if (!sseSocket.GetSocket().Connected)
                         toRemove.Add(sseSocket);
                     else
                     {
-                        if (DateTime.Now.Subtract(sseSocket.LastAction).TotalSeconds > IdleTimeout)
-                        {
-                            try
-                            {
-                                sseSocket.GetSocket().SendAsync(frameMessage);
+                        if (!(DateTime.Now.Subtract(sseSocket.LastAction).TotalSeconds > IdleTimeout)) 
+                            continue;
 
-                                sseSocket.LastAction = DateTime.Now;
-                            }
-                            catch (Exception e)
-                            {
-                                Debug.WriteLine($"SSE Socket exception {e.Message}");
-                                toRemove.Add(sseSocket);
-                            }
+                        try
+                        {
+                            sseSocket.GetSocket().SendAsync(frameMessage);
+
+                            sseSocket.LastAction = DateTime.Now;
+                        }
+                        catch (Exception e)
+                        {
+                            Debug.WriteLine($"SSE Socket exception {e.Message}");
+                            toRemove.Add(sseSocket);
                         }
                     }
                 }
@@ -179,10 +177,8 @@ public class SseServer
 
             var message = $"data:{text}\n\n";
 
-            foreach (var kvp in _sseSockets)
+            foreach (var client in _sseSockets.Select(kvp => kvp.Value))
             {
-                var client = kvp.Value;
-
                 try
                 {
                     var s = client.GetSocket();

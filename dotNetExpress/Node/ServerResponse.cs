@@ -37,14 +37,14 @@ public class ServerResponse
     /// <summary>
     /// 
     /// </summary>
-    public Socket Connection { get { return Socket; } }
+    public Socket Connection => Socket;
 
     /// <summary>
     /// 
     /// </summary>
     /// <param name="field"></param>
     /// <returns></returns>
-    protected string GetHeader(string field)
+    protected string? GetHeader(string field)
     {
         return _headers[field];
     }
@@ -70,7 +70,7 @@ public class ServerResponse
     /// <param name="field"></param>
     /// <param name="value"></param>
     /// <returns></returns>
-    protected void SetHeader(string field, string value)
+    protected void SetHeader(string field, string? value)
     {
         _headers[field] = value;
     }
@@ -92,7 +92,7 @@ public class ServerResponse
     /// All header names are lowercase.
     /// </summary>
     /// <returns></returns>
-    protected string[] GetHeaderNames()
+    protected string?[] GetHeaderNames()
     {
         return _headers.AllKeys;
     }
@@ -206,7 +206,7 @@ public class ServerResponse
     /// <param name="statusCode"></param>
     /// <param name="statusMessage"></param>
     /// <param name="headers"></param>
-    public virtual async Task WriteHead(HttpStatusCode statusCode, string statusMessage, NameValueCollection headers = null)
+    public virtual async Task WriteHead(HttpStatusCode statusCode, string statusMessage, NameValueCollection? headers = null)
     {
         if (null != headers)
             foreach (string key in headers)
@@ -258,7 +258,7 @@ public class ServerResponse
     /// </summary>
     /// <param name="data"></param>
     /// <param name="encoding"></param>
-    public async Task End(string data, Encoding encoding = null)
+    public async Task End(string data, Encoding? encoding = null)
     {
         await Write(data, encoding ?? Encoding.UTF8);
         await End();

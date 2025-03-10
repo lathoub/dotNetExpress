@@ -20,11 +20,11 @@ internal class Client
             {
                 Debug.WriteLine($"[{Environment.CurrentManagedThreadId}] ({DateTime.Now:HH.mm.ss:ffff}) waiting to make a Request object");
 
-                if (!GetRequest(express, tcpClient, out Request req))
+                if (!GetRequest(express, tcpClient, out var req))
                     throw new HttpProtocolException(500, "Unable to construct Request", new ProtocolViolationException("Unable to construct Request"));
 
                 if (req == null || req.Method == null)
-                    throw new HttpProtocolException(500, "Error while parsing reuqest", new ProtocolViolationException("Unable to construct Request"));
+                    throw new HttpProtocolException(500, "Error while parsing reqest", new ProtocolViolationException("Unable to construct Request"));
 
                 Debug.WriteLine($"[{Environment.CurrentManagedThreadId}] ({DateTime.Now:HH.mm.ss:ffff}) We have a Request object");
 

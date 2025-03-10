@@ -13,7 +13,7 @@ namespace dotNetExpress;
 /// <param name="app"></param>
 public class Request(Express app)
 {
-    public MessageBodyStreamReader StreamReader = null;
+    public MessageBodyStreamReader? StreamReader = null;
 
     #region Properties
 
@@ -39,7 +39,7 @@ public class Request(Express app)
     /// <summary>
     /// 
     /// </summary>
-    public Socket Connection { get { return Socket; } } 
+    public Socket Connection => Socket;
 
     /// <summary>
     /// Contains key-value pairs of data submitted in the request body. By default,
@@ -76,7 +76,7 @@ public class Request(Express app)
     /// 
     /// Contains the host derived from the HostName HTTP header.
     /// </summary>
-    public string Host;
+    public string? Host;
 
     /// <summary>
     /// Contains the host derived from the HostName HTTP header.
@@ -261,7 +261,7 @@ public class Request(Express app)
     /// </summary>
     /// <param name="key"></param>
     /// <returns></returns>
-    public string Get(string key) => Headers[key.ToLower()];
+    public string? Get(string key) => Headers[key.ToLower()];
 
     /// <summary>
     /// Returns the matching content type if the incoming request’s “Content-Type” HTTP header
@@ -273,8 +273,7 @@ public class Request(Express app)
     public bool Is(string type)
     {
         var ct = Headers["content-type"];
-        if (ct == null) return false;
-        return ct.Equals(type, StringComparison.OrdinalIgnoreCase);
+        return ct != null && ct.Equals(type, StringComparison.OrdinalIgnoreCase);
     }
 
     /// <summary>

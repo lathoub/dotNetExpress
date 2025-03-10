@@ -357,7 +357,7 @@ public class Express : IDisposable
     /// app settings table. 
     /// </summary>
     /// <param name="key"></param>
-    public string Get(string key)
+    public string? Get(string key)
     {
         return _settings[key];
     }
@@ -402,7 +402,7 @@ public class Express : IDisposable
     /// <param name="callback"></param>
     public async Task<Server> Listen(int port, string host = "", int backLog = 20, ListenCallback callback = null)
     {
-        IPAddress ipAddress = IPAddress.Any;
+        var ipAddress = IPAddress.Any;
         if (!string.IsNullOrEmpty(host))
             ipAddress = IPAddress.Parse(host);
 

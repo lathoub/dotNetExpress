@@ -66,7 +66,7 @@ internal class Accepts
     /// </summary>
     /// <param name="types"></param>
     /// <returns></returns>
-    internal string[] Types(string[] types)
+    internal string[]? Types(string[] types)
     {
         // no types, return all requested types
         if (types.Length == 0)
@@ -74,15 +74,14 @@ internal class Accepts
 
         // no accept header, return first given type
         if (null == _headers["accept"])
-            return new string[] { types[0] };
+            return [types[0]];
 
         var mimes = types.Select(extToMime).ToArray();
         var accepts = _negotiator.MediaTypes(mimes.Where(validMime).ToArray());
-        if (null == accepts) return null;
         if (!accepts.Any()) return null;
         var first = accepts.ElementAt(0);
 
-        return null == first ? null : new[] { types[Array.IndexOf(mimes, first)]};
+        return [types[Array.IndexOf(mimes, first)]];
     }
 
     /// <summary>

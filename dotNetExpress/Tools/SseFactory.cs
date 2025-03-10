@@ -17,6 +17,7 @@ public static class SseFactory
     /// <summary>
     /// 
     /// </summary>
+    /// <param name="_"></param>
     /// <param name="res"></param>
     public static async Task SendResponse(Request _, Response res)
     {
