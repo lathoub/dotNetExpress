@@ -1,6 +1,7 @@
 ﻿using System.Collections.Specialized;
 using System.Net;
-using dotNetExpress.Options;
+using Pynch.dotNetExpress;
+using Pynch.dotNetExpress.Options;
 
 namespace dotNetExpress.examples;
 

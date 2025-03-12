@@ -1,4 +1,5 @@
-﻿using dotNetExpress.Delegates;
+﻿using Pynch.dotNetExpress;
+using Pynch.dotNetExpress.Delegates;
 
 namespace dotNetExpress.examples;
 

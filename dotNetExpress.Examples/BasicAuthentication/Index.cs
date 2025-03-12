@@ -1,8 +1,9 @@
 ﻿using System.Collections.Specialized;
 using System.Net;
 using System.Text;
-using dotNetExpress.Delegates;
-using dotNetExpress.Exceptions;
+using Pynch.dotNetExpress;
+using Pynch.dotNetExpress.Delegates;
+using Pynch.dotNetExpress.Exceptions;
 
 namespace dotNetExpress.examples;
 
