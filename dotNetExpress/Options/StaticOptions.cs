@@ -1,4 +1,4 @@
-﻿namespace dotNetExpress.Options;
+﻿namespace Pynch.dotNetExpress.Options;
 
 public class StaticOptions
 {

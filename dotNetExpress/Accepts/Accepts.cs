@@ -1,10 +1,10 @@
 ﻿using System.Collections.Specialized;
 
-namespace dotNetExpress.Lookup;
+namespace Pynch.dotNetExpress.Accepts;
 
 internal class Accepts
 {
-    private readonly Negotiator _negotiator;
+    private readonly Negotiator.Negotiator _negotiator;
 
     private readonly NameValueCollection _headers;
 
@@ -58,7 +58,7 @@ internal class Accepts
     internal Accepts(Request req)
     {
         _headers = req.Headers;
-        _negotiator = new Negotiator(req);
+        _negotiator = new Negotiator.Negotiator(req);
     }
 
     /// <summary>

@@ -1,4 +1,4 @@
-﻿namespace dotNetExpress;
+﻿namespace Pynch.dotNetExpress;
 
 public class Range
 {

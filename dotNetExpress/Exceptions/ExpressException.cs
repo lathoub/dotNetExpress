@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace dotNetExpress.Exceptions;
+namespace Pynch.dotNetExpress.Exceptions;
 
 public class ExpressException(HttpStatusCode status, string title, string detail) : Exception
 {

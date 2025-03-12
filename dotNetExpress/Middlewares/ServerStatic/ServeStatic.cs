@@ -1,8 +1,7 @@
-﻿using dotNetExpress;
-using dotNetExpress.Delegates;
-using dotNetExpress.Options;
+﻿using Pynch.dotNetExpress.Delegates;
+using Pynch.dotNetExpress.Options;
 
-namespace dotnetExpress.Middlewares.ServerStatic;
+namespace Pynch.dotNetExpress.Middlewares.ServerStatic;
 
 /// <summary>
 /// Constructor

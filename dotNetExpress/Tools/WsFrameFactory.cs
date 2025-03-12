@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace dotNetExpress.Tools;
+namespace Pynch.dotNetExpress.Tools;
 public static class WsFrameFactory
 {
     /// <summary>

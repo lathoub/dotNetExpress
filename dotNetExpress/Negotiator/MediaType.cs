@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 
-namespace dotNetExpress.Lookup;
+namespace Pynch.dotNetExpress.Negotiator;
 
 internal class MediaType
 {

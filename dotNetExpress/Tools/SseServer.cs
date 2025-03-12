@@ -2,7 +2,7 @@
 using System.Net.Sockets;
 using System.Text;
 
-namespace dotNetExpress.Tools;
+namespace Pynch.dotNetExpress.Tools;
 
 /// <summary>
 /// Warning: When not used over HTTP/2, SSE suffers from a limitation to the maximum number of open connections, 

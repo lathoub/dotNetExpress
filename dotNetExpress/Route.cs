@@ -1,6 +1,6 @@
-﻿using dotNetExpress.Delegates;
+﻿using Pynch.dotNetExpress.Delegates;
 
-namespace dotNetExpress;
+namespace Pynch.dotNetExpress;
 
 public class Route
 {

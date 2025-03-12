@@ -1,4 +1,4 @@
-﻿namespace dotNetExpress.Tools;
+﻿namespace Pynch.dotNetExpress.Tools;
 
 public partial class WebSocket
 {

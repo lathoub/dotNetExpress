@@ -2,7 +2,7 @@
 using System.Net.Sockets;
 using System.Text;
 
-namespace dotNetExpress.Tools;
+namespace Pynch.dotNetExpress.Tools;
 public class SseSocket
 {
     private const int MessageBufferSize = 1024;

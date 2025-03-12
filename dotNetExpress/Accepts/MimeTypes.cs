@@ -1,4 +1,4 @@
-﻿namespace dotNetExpress.Lookup;
+﻿namespace Pynch.dotNetExpress.Accepts;
 
 internal class MimeTypes
 {

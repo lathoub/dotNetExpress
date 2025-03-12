@@ -1,9 +1,9 @@
 ﻿using System.Text.RegularExpressions;
-using dotNetExpress.Delegates;
-using dotNetExpress.Exceptions;
-using dotNetExpress.Options;
+using Pynch.dotNetExpress.Delegates;
+using Pynch.dotNetExpress.Exceptions;
+using Pynch.dotNetExpress.Options;
 
-namespace dotNetExpress;
+namespace Pynch.dotNetExpress;
 
 public class Router
 {

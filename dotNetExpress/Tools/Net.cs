@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace dotNetExpress.Tools;
+namespace Pynch.dotNetExpress.Tools;
 
 public class Net
 {

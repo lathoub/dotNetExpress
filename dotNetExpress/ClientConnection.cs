@@ -1,9 +1,9 @@
-﻿using dotNetExpress.Overrides;
-using System.Net.Sockets;
+﻿using System.Diagnostics;
 using System.Net;
-using System.Diagnostics;
+using System.Net.Sockets;
+using Pynch.dotNetExpress.Overrides;
 
-namespace dotNetExpress;
+namespace Pynch.dotNetExpress;
 
 internal class Client
 {

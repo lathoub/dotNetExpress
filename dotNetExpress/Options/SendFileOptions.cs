@@ -1,6 +1,6 @@
 ﻿using System.Collections.Specialized;
 
-namespace dotNetExpress.Options;
+namespace Pynch.dotNetExpress.Options;
 
 public class SendFileOptions 
 {

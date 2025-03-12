@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace dotNetExpress.Tools;
+namespace Pynch.dotNetExpress.Tools;
 public class WsServer
 {
     private readonly Dictionary<int, WebSocket> _webSockets = [];

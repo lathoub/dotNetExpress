@@ -1,4 +1,4 @@
-﻿namespace dotNetExpress.Lookup;
+﻿namespace Pynch.dotNetExpress.Lookup;
 
 public static class Mime
 {

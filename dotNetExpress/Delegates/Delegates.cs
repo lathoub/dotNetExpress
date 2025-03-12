@@ -1,6 +1,6 @@
-﻿using dotNetExpress.Exceptions;
+﻿using Pynch.dotNetExpress.Exceptions;
 
-namespace dotNetExpress.Delegates;
+namespace Pynch.dotNetExpress.Delegates;
 
 public delegate void NextCallback(ExpressException? err = null);
 

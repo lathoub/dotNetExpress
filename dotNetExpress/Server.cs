@@ -1,8 +1,8 @@
-﻿using System.Net;
+﻿using System.Diagnostics;
+using System.Net;
 using System.Net.Sockets;
-using System.Diagnostics;
 
-namespace dotNetExpress;
+namespace Pynch.dotNetExpress;
 
 /// <summary>
 /// 

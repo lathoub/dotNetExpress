@@ -1,7 +1,7 @@
-﻿using dotNetExpress.Exceptions;
-using System.Reflection;
+﻿using System.Reflection;
+using Pynch.dotNetExpress.Exceptions;
 
-namespace dotNetExpress.Middlewares;
+namespace Pynch.dotNetExpress.Middlewares;
 
 public class TemplateEngine
 {

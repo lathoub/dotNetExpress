@@ -1,9 +1,8 @@
 ﻿using System.Collections.Specialized;
 using System.Text;
-using dotNetExpress;
-using dotNetExpress.Delegates;
+using Pynch.dotNetExpress.Delegates;
 
-namespace dotnetExpress.Middlewares.BodyParser;
+namespace Pynch.dotNetExpress.Middlewares.BodyParser;
 
 public class BodyParser
 {

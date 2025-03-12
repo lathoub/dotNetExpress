@@ -3,11 +3,12 @@ using System.Net;
 using System.Text;
 using System.Text.Json;
 using System.Text.RegularExpressions;
-using dotNetExpress.Lookup;
-using dotNetExpress.Node;
-using dotNetExpress.Options;
+using Pynch.dotNetExpress.Accepts;
+using Pynch.dotNetExpress.Lookup;
+using Pynch.dotNetExpress.Node;
+using Pynch.dotNetExpress.Options;
 
-namespace dotNetExpress;
+namespace Pynch.dotNetExpress;
 
 public class Response : ServerResponse
 {

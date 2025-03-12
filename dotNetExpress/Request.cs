@@ -1,11 +1,10 @@
 ﻿using System.Collections.Specialized;
 using System.Net;
 using System.Net.Sockets;
-using dotNetExpress.Lookup;
-using dotNetExpress.Options;
-using dotNetExpress.Overrides;
+using Pynch.dotNetExpress.Options;
+using Pynch.dotNetExpress.Overrides;
 
-namespace dotNetExpress;
+namespace Pynch.dotNetExpress;
 
 /// <summary>
 /// 
@@ -214,7 +213,7 @@ public class Request(Express app)
 
     public string Accepts(string[] types)
     {
-        var accept = new Accepts(this);
+        var accept = new Accepts.Accepts(this);
         var _types = accept.Types(types);
         return null == _types ? string.Empty : _types.FirstOrDefault();
     }

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace dotNetExpress.Lookup;
+namespace Pynch.dotNetExpress.Lookup;
 
 internal static class Dynamic
 {
